@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import ListaTareas from "./ListaTareas";
 
 const Formulario = () => {
+  // Logica
+  // Crear un state
+  const [arregloTareas, setArregloTareas] = useState([]);
+  const [tarea, setTarea] = useState("");
+
+  // maquetado y algo de logica
   return (
     <div>
       <Form>
