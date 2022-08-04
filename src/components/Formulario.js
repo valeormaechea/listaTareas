@@ -26,6 +26,12 @@ const Formulario = () => {
     setTarea("");
   };
 
+  const borrarTarea = (nombre) => {
+    let arregloModificado = arregloTareas.filter((valor) => {
+      return valor != nombre;
+    });
+    setArregloTareas(arregloModificado);
+  };
   // maquetado y algo de logica
   return (
     <div>
@@ -44,7 +50,7 @@ const Formulario = () => {
         </Form.Group>
       </Form>
       {/* Invoco a la lista de tareas */}
-      <ListaTareas arregloTareas={arregloTareas}></ListaTareas>
+      <ListaTareas arregloTareas={arregloTareas} borrarTarea={borrarTarea}></ListaTareas>
     </div>
   );
 };
