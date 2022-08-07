@@ -1,14 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import ListaTareas from "./ListaTareas";
 
 const Formulario = () => {
   // Logica
-
+  let tareasLocalStorage =
+    JSON.parse(localStorage.getItem("listaTareas")) || [];
   // Crear un state
-  const [arregloTareas, setArregloTareas] = useState([]);
+  const [arregloTareas, setArregloTareas] = useState(tareasLocalStorage);
   const [tarea, setTarea] = useState("");
+
+  // Ciclo de vida
+  useEffect(() => {
+    console.log("prueba de ciclo de vida");
+    localStorage.setItem("listaTareas", JSON.stringify(arregloTareas));
+  }, [arregloTareas]);
 
   // const actualizarTarea = (e) => {
   //   // Obtener el value del input
@@ -32,6 +39,7 @@ const Formulario = () => {
     });
     setArregloTareas(arregloModificado);
   };
+
   // maquetado y algo de logica
   return (
     <div>
@@ -50,7 +58,10 @@ const Formulario = () => {
         </Form.Group>
       </Form>
       {/* Invoco a la lista de tareas */}
-      <ListaTareas arregloTareas={arregloTareas} borrarTarea={borrarTarea}></ListaTareas>
+      <ListaTareas
+        arregloTareas={arregloTareas}
+        borrarTarea={borrarTarea}
+      ></ListaTareas>
     </div>
   );
 };
